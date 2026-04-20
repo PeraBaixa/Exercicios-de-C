@@ -7,8 +7,7 @@ void exercicio20();
 void exercicio26();
 void exercicio30();
 
-int main()
-{   int opt;
+int main(){   int opt;
     char s[] = "Voce selecionou";
     
     do{
@@ -16,8 +15,8 @@ int main()
         printf("1 - Multiplicacao de vetores (ex. 6)\n");
         printf("2 - Vetor par e vetor impar (ex. 13)\n");
         printf("3 - Diferenca, soma e produto (ex. 20)\n");
-        printf("4 - Multiplos de 7 ou de 3\n");
-        printf("5 - \n");
+        printf("4 - Multiplos de 7 ou de 3 (ex. 26)\n");
+        printf("5 - Vetor e valor repetido (ex.30)\n");
         printf("Outro valor - Sair do programa\n");
         
         printf("Escolha qual exercicio deseja testar: ");
@@ -41,7 +40,7 @@ int main()
                 exercicio26();
                 break;
             case 5:
-                printf("%s \"\"\n\n", s);
+                printf("%s \"Vetor e valor repetido\"\n\n", s);
                 exercicio30();
                 break;
             default:
@@ -228,4 +227,30 @@ void exercicio26(){
     printf("]\n");
 }
 
-void exercicio30(){}
+//EX. 30
+void exercicio30(){
+    /*Faça um algoritmo que leia um vetor de 100 posições e uma variável
+      identificadora do tipo numérica inteira. Retorne como resposta a
+      quantidade de vezes que este número aparece no vetor, e o percentual de
+      vezes que aparece em relação ao vetor.*/
+    int TAM = 10;
+    int vet[TAM];
+    int val;
+    int num = 0;
+      
+    printf("Sobre o vetor,\n");
+    for(int i = 0; i < TAM; i++){
+        printf("Informe o valor %d: ", (i+1));
+        scanf("%d", &vet[i]);
+    }
+    printf("Agora, informe o valor a ser buscado: ");
+    scanf("%d", &val);
+    
+    for(int i = 0; i < TAM; i++){
+        if (vet[i] == val){
+            num++;
+        }
+    }
+    
+    printf("O valor %d aparece %d vezes, ocupando %d por cento do vetor", val, num, ((100*num)/TAM));
+}

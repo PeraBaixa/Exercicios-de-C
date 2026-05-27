@@ -255,7 +255,7 @@ void ex16(){
     printf("Informe o expoente da operação: "); scanf("%i", &expo);
     printf("O resultado da potencialização é %f", pot(n, expo));
 }
-float pot(float n, float expo){
+float pot(float n, int expo){
     float pot = 1.0;
     
     for (int i = 0; i < expo; i++){

@@ -20,7 +20,11 @@ void ordenaVals (int vals[]); //Para o ex. 12
 float volEsfera (float r); //Para o ex. 13
 void calculaMedia (float notas[], char cod); //Para o ex. 14
 int somaN (int N); //Para o ex. 15
-float pot (float n, float expo); //Para o ex. 16
+float pot (float n, int expo); //Para o ex. 16
+int lerInt(); //Para o ex. 17
+int soma(int a, int b); //Para o ex. 18
+float media(float vals[], int tam); //Para o ex. 19
+void confTri(float X, float Y, float Z); //Para o ex. 20
 
 int main() {
 	int opt;
@@ -34,10 +38,10 @@ int main() {
 		printf("4 - Calcular media (ex. 14)\n");
 		printf("5 - Somar N numeros (ex. 15)\n");
 		printf("6 - Potencializacao (ex. 16)\n");
-		printf("7 - Soma de matrizes (ex. 17)\n");
-		printf("8 - Acima e abaixo da diagonal principal (ex. 18)\n");
-		printf("9 - Multiplicar pelo maior da linha (ex. 19)\n");
-		printf("10 - Multiplicar valores pela diagonal (ex.20)\n");
+		printf("7 - Ler inteiros (ex. 17)\n");
+		printf("8 - Soma de inteiros (ex. 18)\n");
+		printf("9 - Media de notas (ex. 19)\n");
+		printf("10 - Verificar triangulo (ex.20)\n");
 		printf("Outro valor - Sair do programa\n");
 
 		printf("Escolha qual exercicio deseja testar: ");
@@ -69,19 +73,19 @@ int main() {
     			ex16();
     			break;
     		case 7:
-    			printf("%s \"Soma de matrizes\"\n\n", s);
+    			printf("%s \"Ler inteiros\"\n\n", s);
     			ex17();
     			break;
     		case 8:
-    			printf("%s \"Acima e abaixo da diagonal principal\"\n\n", s);
+    			printf("%s \"Soma de inteiros\"\n\n", s);
     			ex18();
     			break;
     		case 9:
-    			printf("%s \"Multiplicar pelo maior da linha\"\n\n", s);
+    			printf("%s \"Media de notas\"\n\n", s);
     			ex19();
     			break;
     		case 10:
-    			printf("%s \"Multiplicar valores pela diagonal\"\n\n", s);
+    			printf("%s \"Verificar triangulo\"\n\n", s);
     			ex20();
     			break;
     		default:
@@ -265,7 +269,102 @@ float pot(float n, int expo){
     return pot;
 }
 
-void ex17(){}
-void ex18(){}
-void ex19(){}
-void ex20(){}
+void ex17(){
+    /*
+      Construa uma função de leitura de variáveis do tipo inteiro e chame-a
+      no programa principal 3 vezes com 3 variáveis diferentes e após a
+      chamada escreva a soma destas variáveis
+    */
+    int a, b, c;
+    a = lerInt();
+    b = lerInt();
+    c = lerInt();
+    
+    printf("A soma dos valores eh %i", (a + b + c));
+}
+int lerInt(){
+    int val;
+    printf("Informe o numero inteiro: ");
+    scanf("%i", &val);
+    
+    return val;
+}
+
+void ex18(){
+    /*
+      Construa um programa que leia 2 variáveis do tipo inteiro e após a
+      leitura chame uma função que devolva a soma das duas variáveis
+    */
+    int a, b;
+    
+    printf("Informe o primeiro valor: "); scanf("%i", &a);
+    printf("Informe o segundo valor: "); scanf("%i", &b);
+    printf("A soma dos valores eh %i", soma(a,b));
+}
+int soma(int a, int b){
+    return (a+b);
+}
+
+void ex19(){
+    /*
+      Desenvolva um programa que leia 4 notas e chame uma função que devolverá
+      a média de 4 valores.
+    */
+    float notas[4];
+    
+    printf("Informe as notas:\n");
+    printf("1 - "); scanf("%f", &notas[0]);
+    printf("2 - "); scanf("%f", &notas[1]);
+    printf("3 - "); scanf("%f", &notas[2]);
+    printf("4 - "); scanf("%f", &notas[3]);
+    printf("A media das notas eh %.1f", media(notas, (sizeof(notas)/sizeof(notas[0]))));
+}
+float media(float vals[], int tam){
+    float res = 0.0;
+    
+    printf("Tamanho: %i\n", sizeof(vals));
+    
+    for(int i = 0; i < tam; i++){
+        res += vals[i];
+    }
+    
+    return (res/tam);
+}
+
+void ex20(){
+    /*
+      Escreva uma procedure que recebe 3 valores reais X, Y e Z e que
+      verifique se esses valores podem ser os comprimentos dos lados de
+      um triângulo e, neste caso, retornar qual o tipo de triângulo formado.
+      A procedure deve identificar o tipo de triângulo formado observando as 
+      seguintes definições:
+        Triângulo Equilátero: os comprimentos dos 3 lados são iguais.
+        Triângulo Isósceles: os comprimentos de 2 lados são iguais.
+        Triângulo Escaleno: os comprimentos dos 3 lados são diferentes.
+    */
+    
+    float a, b, c;
+    
+    printf("Informeo lado A: "); scanf("%f", &a);
+    printf("Informeo lado B: "); scanf("%f", &b);
+    printf("Informeo lado C: "); scanf("%f", &c);
+    confTri(a, b, c);
+}
+void confTri(float X, float Y, float Z){
+    if (X+Y < Z || X+Z < Y || Y+Z < X) {
+        printf("Esses lados nao formam um triangulo");
+        return;
+    }
+    
+    printf("Esses lados formam um triangulo ");
+    
+    if (X == Y && X == Z) {
+        printf("equilatero");
+    }
+    else if (X == Y || X == Z || Y == Z) {
+        printf("isosceles");
+    }
+    else {
+        printf("escaleno");
+    }
+}
